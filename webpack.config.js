@@ -4,8 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     // webpack入口文件，webpack从这里开始构建依赖图
     entry: {
-        main: './src/index.js',
-        // main: './src/index.tsx',
+        // main: './src/index.js',
+        main: './src/index.tsx',
     },
     // 输出文件./dist/bundle.js
     output: {
@@ -15,15 +15,15 @@ module.exports = {
     // webpack只能处理js和json文件。加载别的文件需要loader处理，module就是配置loader的地方。
     module: {
         rules: [
-            // {
+            {
             //     // /\.js$/ 改成 /\.tsx?$/
-            //     // // test: /\.tsx$/,
-            //     // use: 'ts-loader',
+                test: /\.tsx$/,
+                use: 'ts-loader',
 
-            //     test: /\.js$/,
-            //     // use: 'babel-loader',
-            //     exclude: /node_modules/
-            // },
+                // test: /\.js$/,
+                // use: 'babel-loader',
+                exclude: /node_modules/
+            },
             {
                 test: /.css$/,
                 use: ['style-loader', 'css-loader']
