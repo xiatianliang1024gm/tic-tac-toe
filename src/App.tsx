@@ -6,7 +6,7 @@ interface SquareProps {
     onSquareClick: () => void;
 }
 
-// Square组件的两种写法 React组件和React函数组件 
+// React Component
 class Square2 extends React.Component<SquareProps> {
     render() {
         return (
@@ -29,12 +29,9 @@ const Square: React.FC<SquareProps> = ({ value, onSquareClick }) => {
     )
 }
 
-// 类型定义
 interface BoardProps {
-    // 变量名 : 类型
     xIsNext: boolean;
     squares: string[];
-    // 函数声明
     onPlay: (squares: string[]) => void;
 }
 
@@ -84,9 +81,7 @@ const Board: React.FC<BoardProps> = ({ xIsNext, squares, onPlay }) => {
 };
 
 class Board2 extends React.Component<BoardProps> {
-    // 类中方法的定义 不需要function标识
     handleClick(i: number): void {
-        // 类中使用构造函数的字段 this.props.xxx
         if (calculateWinner(this.props.squares) || this.props.squares[i]) {
             return;
         }
@@ -99,13 +94,7 @@ class Board2 extends React.Component<BoardProps> {
         this.props.onPlay(nextSquares);
     }
 
-    componentDidMount(): void {
-        console.log("componentDidMount")
-    }
-
     render(): React.ReactNode {
-        // 组件关键就是返回 render的部分
-        console.log("render")
         const winner = calculateWinner(this.props.squares);
         let status;
         if (winner) {

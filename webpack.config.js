@@ -2,24 +2,21 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    // webpack入口文件，webpack从这里开始构建依赖图
     entry: {
         // main: './src/index.js',
         main: './src/index.tsx',
     },
-    // 输出文件./dist/bundle.js
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
-    // webpack只能处理js和json文件。加载别的文件需要loader处理，module就是配置loader的地方。
     module: {
         rules: [
             {
-            //     // /\.js$/ 改成 /\.tsx?$/
                 test: /\.tsx$/,
                 use: 'ts-loader',
 
+                // for .js
                 // test: /\.js$/,
                 // use: 'babel-loader',
                 exclude: /node_modules/
@@ -30,12 +27,11 @@ module.exports = {
             }
         ]
     },
-    // 增加扩展选项，让webpack可以识别.ts/tsx文件
+    // help webpack to recognize .ts/tsx
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
-    // webpack加载html文件需要html-webpack-plugin插件处理。
-    // 启动webpack-dev-server的时候，会把打包好的js文件、css文件、html文件放在内存里。
+    // help webpack to hanle html
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
